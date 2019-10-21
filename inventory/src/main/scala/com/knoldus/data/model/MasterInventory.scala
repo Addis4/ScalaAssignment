@@ -3,6 +3,10 @@ package com.knoldus.data.model
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.ProvenShape
 
+/**
+ * This class is the main data manipulating class of inventory.
+ *
+ */
 class MasterInventory(tag: Tag) extends Table[Inventory](tag, "Item") {
   def * : ProvenShape[Inventory] =
     (itemNo, itemName, itemDetail, rating, price, vendorName, vendorContact, itemCategory).<>(Inventory.tupled, Inventory.unapply)

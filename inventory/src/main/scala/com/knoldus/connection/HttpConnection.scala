@@ -2,7 +2,7 @@ package com.knoldus.connection
 
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
-import com.typesafe.config.{ Config, ConfigFactory }
+import com.typesafe.config.{Config, ConfigFactory}
 
 import scala.concurrent.ExecutionContextExecutor
 
@@ -18,4 +18,7 @@ trait HttpConnection {
 
 }
 
+/**
+ * This companion object is created to use variables of HttpConnection.
+ */
 object HttpConnection extends HttpConnection
