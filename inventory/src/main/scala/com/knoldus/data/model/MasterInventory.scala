@@ -3,8 +3,9 @@ package com.knoldus.data.model
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.ProvenShape
 
-class MasterData(tag: Tag) extends Table[Items](tag, "Item") {
-  def * : ProvenShape[Items] = (itemNo, itemName, itemDetail, rating, price, vendorName, vendorContact, itemCategory).<>(Items.tupled, Items.unapply)
+class MasterInventory(tag: Tag) extends Table[Inventory](tag, "Item") {
+  def * : ProvenShape[Inventory] =
+    (itemNo, itemName, itemDetail, rating, price, vendorName, vendorContact, itemCategory).<>(Inventory.tupled, Inventory.unapply)
 
   def itemNo: Rep[Int] = column[Int]("itemNo", O.PrimaryKey)
 
