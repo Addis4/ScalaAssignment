@@ -3,7 +3,7 @@ package com.knoldus.testservice
 import com.knoldus.testconstant.TestConstants._
 import org.scalatest.AsyncWordSpec
 import org.scalatest.concurrent.ScalaFutures
-import org.scalatest.time.{ Millis, Seconds, Span }
+import org.scalatest.time.{Millis, Seconds, Span}
 
 class InventoryServicesSpec extends AsyncWordSpec with ScalaFutures {
 

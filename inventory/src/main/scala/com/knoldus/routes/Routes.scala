@@ -2,13 +2,18 @@ package com.knoldus.routes
 
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
-import com.knoldus.inventoryservice.util.JSONParser
 import com.knoldus.data.model.Inventory
 import com.knoldus.data.services.InventoryServices
+import com.knoldus.inventoryservice.util.JSONParser
 
 import scala.concurrent.ExecutionContext
-import scala.util.{ Failure, Success, Try }
 
+/**
+ * Routes is class which contain details of all routes to be used
+ *
+ * @param repo is to connect with InventoryServices methods,
+ * @param ex   is execution context
+ */
 class Routes(repo: InventoryServices)(implicit ex: ExecutionContext)
   extends JSONParser {
 
