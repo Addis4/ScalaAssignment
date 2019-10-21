@@ -17,10 +17,11 @@ lazy val root = (
   )
 lazy val inventory = (
   baseProject("inventory")
-    settings(libraryDependencies ++= compileDeps(inventoryDependencies) ++ testDeps(scalaTest, mock),
-    ScoverageKeys.coverageMinimum := 95,
+    settings(libraryDependencies ++= compileDeps(inventoryDependencies) ++ testDeps(h2, scalaTest, mock, slickTest2, slickTest3, slickTest4),
+    ScoverageKeys.coverageMinimum := 90,
     ScoverageKeys.coverageFailOnMinimum := true,
-    ScoverageKeys.coverageExcludedPackages := ""
+    ScoverageKeys.coverageExcludedPackages := "",
+    ScoverageKeys.coverageEnabled := true
   ))
 
 def compileDeps(deps: Seq[ModuleID]): Seq[ModuleID] = deps map (_ % "compile")

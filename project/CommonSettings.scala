@@ -2,7 +2,6 @@ import sbt.Keys._
 import sbt._
 import scoverage.ScoverageKeys
 
-
 object CommonSettings {
 
   lazy val projectSettings = Seq(
