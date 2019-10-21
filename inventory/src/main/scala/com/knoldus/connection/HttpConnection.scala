@@ -1,4 +1,4 @@
-package com.knoldus.http
+package com.knoldus.connection
 
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
@@ -13,10 +13,12 @@ trait HttpConnection {
   implicit lazy val materializer: ActorMaterializer = ActorMaterializer()
   implicit lazy val ec: ExecutionContextExecutor = system.dispatcher
 
-
   lazy val httpHost: String = config.getConfig("http").getString("interface")
   lazy val httpPort: Int = config.getConfig("http").getInt("port")
 
 }
 
+/**
+ * This companion object is created to use variables of HttpConnection.
+ */
 object HttpConnection extends HttpConnection
