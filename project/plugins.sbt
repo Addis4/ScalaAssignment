@@ -15,3 +15,5 @@ addSbtPlugin("com.github.sbt" % "sbt-cpd" % "2.0.0")
 
 //This plugin is used to automatically upload code quality reports on CodeSquad server.
 addSbtPlugin("io.github.knoldus" %% "codesquad-sbt-plugin" % "0.2.1")
+
+addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.10")
