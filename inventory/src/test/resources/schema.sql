@@ -1,4 +1,3 @@
-
 CREATE TABLE Item(
 itemNo varchar(20) Primary Key,
 itemName varchar(200),
