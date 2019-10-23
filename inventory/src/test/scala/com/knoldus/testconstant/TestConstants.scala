@@ -10,7 +10,7 @@ object TestConstants {
 
   val testObj: InventoryServices = new InventoryServices with H2Impl
   val testItem1: Inventory =
-    Inventory(9, "Branded Things", "From a branded company most trusted and good working", 3.0, 3500.0, "Shahfahed", (2346584832L), "Electronics")
+    Inventory(11, "Branded Things", "From a branded company most trusted and good working", 3.0, 3500.0, "Shahfahed", (2346584832L), "Electronics")
   val testItem2: Inventory =
     Inventory(1, "Branded Earphones", "From a branded company most trusted and good working", 5.0, 3500.0, "Shahfahed", 2346584832L, "Electronics")
   val testItem3: Inventory =
