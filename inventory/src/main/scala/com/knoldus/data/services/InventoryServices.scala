@@ -54,11 +54,9 @@ class InventoryServices(implicit ec: ExecutionContext = ExecutionContext.global)
   def sortPrice(order: String): Future[Seq[Inventory]] = db.run {
     if (order == "ascending" || order == "asc" || order == "lowtohigh") {
       itemService.sortBy(_.price.asc.nullsFirst).result
-    }
-    else if (order == "descending" || order == "desc" || order == "hightolow") {
+    } else if (order == "descending" || order == "desc" || order == "hightolow") {
       itemService.sortBy(_.price.desc.nullsLast).result
-    }
-    else {
+    } else {
       itemService.sortBy(_.price.asc.nullsFirst).result
     }
   }
@@ -70,13 +68,11 @@ class InventoryServices(implicit ec: ExecutionContext = ExecutionContext.global)
    * @return will return the list in order you want.
    */
   def sortRating(order: String): Future[Seq[Inventory]] = db.run {
-    if (order == "ascending") {
+    if (order == "ascending" || order == "asc" || order == "lowtohigh") {
       itemService.sortBy(_.rating.asc.nullsFirst).result
-    }
-    else if (order == "descending" || order == "desc" || order == "hightolow") {
+    } else if (order == "descending" || order == "desc" || order == "hightolow") {
       itemService.sortBy(_.price.desc.nullsLast).result
-    }
-    else {
+    } else {
       itemService.sortBy(_.rating.desc.nullsLast).result
     }
   }

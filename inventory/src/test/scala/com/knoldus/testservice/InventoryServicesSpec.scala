@@ -68,7 +68,7 @@ class InventoryServicesSpec extends AsyncWordSpec with ScalaFutures {
     "sort in descending order" in {
       val itemList = testObj.sortRating("descending")
       whenReady(itemList) { result =>
-        assert(result == Vector(testItem2, testItem3, testItem1))
+        assert(result == Vector(testItem2, testItem1, testItem3))
       }
     }
   }
