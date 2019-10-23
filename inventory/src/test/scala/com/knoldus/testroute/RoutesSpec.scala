@@ -24,7 +24,16 @@ class RoutesSpec extends WordSpec with ScalatestRouteTest with JSONParser {
   testObj.addItem(testItem3)
   "/inventory/insert route" should {
     "add items in inventory" in {
-      val postRequest = ByteString("""{"itemNo":3,"itemName":"Branded Shirt","itemDetail":"From a branded company most trusted and good working","rating":4.0,"price":500.0,"vendorName":"Unknown","vendorContact":3462584833,"itemCategory":"Shirts"}""")
+      val postRequest =
+        ByteString(
+          """{"itemNo":3,
+            |"itemName":"Branded Shirt",
+            |"itemDetail":"From a branded company most trusted and good working",
+            |"rating":4.0,
+            |"price":500.0,
+            |"vendorName":"Unknown",
+            |"vendorContact":3462584833,
+            |"itemCategory":"Shirts"}""".stripMargin)
       Post("/inventory/insert", HttpEntity(ContentTypes.`application/json`, postRequest)) ~> testRoutes ~> check {
         responseAs[String] === "Item Inserted"
       }
@@ -61,7 +70,6 @@ class RoutesSpec extends WordSpec with ScalatestRouteTest with JSONParser {
   "/inventory/pageLimit/2 route" should {
     "Sort list of items in inventory listed with the search content" in {
       Get("/inventory/pageLimit/2") ~> testRoutes ~> check {
-        testObj.addItem(testItem1)
         responseAs[Vector[Inventory]] === Vector(testItem1, testItem2)
       }
     }

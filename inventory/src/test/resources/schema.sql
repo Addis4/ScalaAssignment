@@ -1,5 +1,5 @@
-DROP TABLE  IF EXISTS item ;
-CREATE TABLE item(
+
+CREATE TABLE Item(
 itemNo varchar(20) Primary Key,
 itemName varchar(200),
 itemDetail varchar(200),
