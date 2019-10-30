@@ -1,21 +1,12 @@
 package com.knoldus.routes
 
-import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.Route
-import com.knoldus.data.model.Inventory
-import com.knoldus.data.services.InventoryServices
-import com.knoldus.inventoryservice.util.JSONParser
-
-import scala.concurrent.ExecutionContext
-
 /**
  * Routes is class which contain details of all routes to be used
  *
- * @param repo is to connect with InventoryServices methods,
- * @param ex   is execution context
+ * @param repo is to connect with InventoryServices methods
  */
-class Routes(repo: InventoryServices)(implicit ex: ExecutionContext)
-  extends JSONParser {
+class Routes(repo: InventoryServices)
+  extends JSONSupport {
 
   val routes: Route =
     get {
@@ -47,9 +38,7 @@ class Routes(repo: InventoryServices)(implicit ex: ExecutionContext)
         path("inventory" / "insert") {
           entity(as[Inventory]) { item =>
             val stored = repo.addItem(item)
-            onComplete(stored) {
-              done => complete("Item Inserted")
-            }
+            onComplete(stored)(done => complete("Item Inserted"))
           }
         }
       }

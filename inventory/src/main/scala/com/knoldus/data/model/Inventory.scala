@@ -13,12 +13,12 @@ package com.knoldus.data.model
  * @param itemCategory  is the category of item which it belongs.
  */
 case class Inventory(
-                      itemNo: Int,
-                      itemName: String,
-                      itemDetail: String,
-                      rating: Double,
-                      price: Double,
-                      vendorName: String,
-                      vendorContact: Long,
-                      itemCategory: String)
+  itemNo: Int,
+  itemName: String,
+  itemDetail: String,
+  rating: Double,
+  price: Double,
+  vendorName: String,
+  vendorContact: Long,
+  itemCategory: String)
 

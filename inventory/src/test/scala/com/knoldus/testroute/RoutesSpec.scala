@@ -1,28 +1,15 @@
 package com.knoldus.testroute
 
-import akka.actor.ActorSystem
-import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
-import akka.http.scaladsl.server.Route
-import akka.http.scaladsl.testkit.ScalatestRouteTest
-import akka.stream.ActorMaterializer
-import akka.util.ByteString
-import com.knoldus.data.model.Inventory
-import com.knoldus.inventoryservice.util.JSONParser
-import com.knoldus.routes.Routes
-import com.knoldus.testconstant.TestConstants._
-import org.scalatest.WordSpec
+import scala.concurrent.Future
 
-import scala.concurrent.ExecutionContextExecutor
+class RoutesSpec extends WordSpec with ScalatestRouteTest with Matchers with JSONSupport with MockitoSugar {
 
-class RoutesSpec extends WordSpec with ScalatestRouteTest with JSONParser {
+  val mockObj: InventoryServices = mock[InventoryServices]
+  val testRoutes: Route = new Routes(mockObj).routes
 
-  implicit lazy val testSystem: ActorSystem = ActorSystem()
-  implicit lazy val testMaterializer: ActorMaterializer = ActorMaterializer()
-  implicit val dispatcher: ExecutionContextExecutor = system.dispatcher
-  val testRoutes: Route = new Routes(testObj).routes
-  testObj.addItem(testItem2)
-  testObj.addItem(testItem3)
   "/inventory/insert route" should {
+    when(mockObj.addItem(Inventory(3, "Branded Shirt", "From a branded company most trusted and good working",
+      4.0, 500.0, "Unknown", 3462584833L, "Shirts"))).thenReturn(Future[Int](1))
     "add items in inventory" in {
       val postRequest =
         ByteString(
@@ -35,43 +22,55 @@ class RoutesSpec extends WordSpec with ScalatestRouteTest with JSONParser {
             |"vendorContact":3462584833,
             |"itemCategory":"Shirts"}""".stripMargin)
       Post("/inventory/insert", HttpEntity(ContentTypes.`application/json`, postRequest)) ~> testRoutes ~> check {
-        responseAs[String] === "Item Inserted"
+        assert(responseAs[String] === "Item Inserted")
       }
     }
   }
+
   "/inventory route" should {
     "give list of items in inventory" in {
+      when(mockObj.itemList).thenReturn(Future[Seq[Inventory]](Seq(testItem2)))
       Get("/inventory") ~> testRoutes ~> check {
-        responseAs[Vector[Inventory]] === Vector(testItem2, testItem3)
+        assert(responseAs[Vector[Inventory]] === Vector(testItem2))
       }
     }
   }
+
   "/inventory/search/Electronics route" should {
     "give list of items in inventory listed with the search content" in {
+      when(mockObj.fetchItem("Electronics")).thenReturn(Future[Seq[Inventory]](Seq(testItem2)))
       Get("/inventory/search/Electronics") ~> testRoutes ~> check {
-        responseAs[Vector[Inventory]] === Vector(testItem2)
+        assert(responseAs[Vector[Inventory]] === Vector(testItem2))
       }
     }
   }
+
   "/inventory/sortByPrice/ascending route" should {
     "Sort list of items in inventory listed with the search content" in {
+      when(mockObj.sortPrice("ascending")).thenReturn(Future[Seq[Inventory]](Seq(testItem3, testItem2)))
       Get("/inventory/sortByPrice/ascending") ~> testRoutes ~> check {
-        responseAs[Vector[Inventory]] === Vector(testItem3, testItem2)
+        assert(responseAs[Vector[Inventory]] == Vector(testItem3, testItem2))
       }
     }
   }
+
   "/inventory/sortByRating/ascending route" should {
     "Sort list of items in inventory listed with the search content" in {
+      when(mockObj.sortRating("ascending")).thenReturn(Future[Seq[Inventory]](Seq(testItem3, testItem2)))
       Get("/inventory/sortByRating/ascending") ~> testRoutes ~> check {
-        responseAs[Vector[Inventory]] === Vector(testItem3, testItem2)
+        assert(responseAs[Vector[Inventory]] === Vector(testItem3, testItem2))
       }
     }
   }
+
   "/inventory/pageLimit/2 route" should {
     "Sort list of items in inventory listed with the search content" in {
+      when(mockObj.pageLimit(2)).thenReturn(Future[Seq[Inventory]](Seq(testItem1, testItem2)))
       Get("/inventory/pageLimit/2") ~> testRoutes ~> check {
-        responseAs[Vector[Inventory]] === Vector(testItem1, testItem2)
+        assert(responseAs[Vector[Inventory]] === Vector(testItem1, testItem2))
       }
     }
   }
+
 }
+

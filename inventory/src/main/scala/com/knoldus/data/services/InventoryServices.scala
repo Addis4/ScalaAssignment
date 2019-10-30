@@ -1,11 +1,11 @@
 package com.knoldus.data.services
 
 import com.knoldus.connection.DB
-import com.knoldus.data.model.{Inventory, MasterInventory}
+import com.knoldus.data.model.{ Inventory, MasterInventory }
 import slick.jdbc
 import slick.jdbc.MySQLProfile.api._
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.{ ExecutionContext, Future }
 
 /**
  * This class holds the services which can be used by user to go through the component
