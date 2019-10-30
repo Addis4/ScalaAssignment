@@ -17,7 +17,7 @@ lazy val root = (
   )
 lazy val inventory = (
   baseProject("inventory")
-    settings(libraryDependencies ++= compileDeps(inventoryDependencies) ++ testDeps(h2, scalaTest, mock, slickTest2, slickTest3, slickTest4),
+    settings(libraryDependencies ++= compileDeps(inventoryDependencies) ++ testDeps(h2, scalaTest, mock, akkaTestKit, slickTest3, slickTest4),
     ScoverageKeys.coverageMinimum := 90,
     ScoverageKeys.coverageFailOnMinimum := true,
     ScoverageKeys.coverageExcludedPackages := "",

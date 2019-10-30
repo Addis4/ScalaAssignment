@@ -1,5 +1,18 @@
 package com.knoldus.testroute
 
+import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
+import akka.http.scaladsl.server.Route
+import akka.http.scaladsl.testkit.ScalatestRouteTest
+import akka.util.ByteString
+import com.knoldus.data.model.Inventory
+import com.knoldus.data.services.InventoryServices
+import com.knoldus.inventoryservice.util.JSONSupport
+import com.knoldus.routes.Routes
+import com.knoldus.testconstant.TestConstants._
+import org.mockito.Mockito.when
+import org.scalatest.mockito.MockitoSugar
+import org.scalatest.{Matchers, WordSpec}
+
 import scala.concurrent.Future
 
 class RoutesSpec extends WordSpec with ScalatestRouteTest with Matchers with JSONSupport with MockitoSugar {

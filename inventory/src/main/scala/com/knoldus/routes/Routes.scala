@@ -1,5 +1,11 @@
 package com.knoldus.routes
 
+import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.server.Route
+import com.knoldus.data.model.Inventory
+import com.knoldus.data.services.InventoryServices
+import com.knoldus.inventoryservice.util.JSONSupport
+
 /**
  * Routes is class which contain details of all routes to be used
  *
