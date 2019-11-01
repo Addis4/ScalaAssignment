@@ -2,7 +2,7 @@ package com.knoldus.testconstant
 
 import com.knoldus.connection.DB
 import com.knoldus.data.model.Inventory
-import com.knoldus.data.services.InventoryServices
+import com.knoldus.services.InventoryServices
 import com.knoldus.testconnection.H2Impl
 
 object TestConstants {
