@@ -1,9 +1,9 @@
-package com.knoldus.routes
+package com.knoldus.connector
 
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import com.knoldus.data.model.Inventory
-import com.knoldus.data.services.InventoryServices
+import com.knoldus.services.InventoryServices
 import com.knoldus.inventoryservice.util.JSONSupport
 
 /**

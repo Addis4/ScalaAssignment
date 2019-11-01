@@ -1,4 +1,4 @@
-package com.knoldus.data.services
+package com.knoldus.services
 
 import com.knoldus.connection.DB
 import com.knoldus.data.model.{ Inventory, MasterInventory }

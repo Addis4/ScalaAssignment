@@ -4,8 +4,8 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Route
 import com.knoldus.connection.HttpConnection._
 import com.knoldus.connection.MySQLImpl
-import com.knoldus.data.services.InventoryServices
-import com.knoldus.routes.Routes
+import com.knoldus.connector.Routes
+import com.knoldus.services.InventoryServices
 
 object InventoryImpl {
   def main(args: Array[String]): Unit = {
